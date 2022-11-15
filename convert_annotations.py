@@ -92,7 +92,10 @@ for subset in args.subsets:
     original_category_info = utils.csvread(os.path.join(base_dir, 'annotations', category_sourcefile))
     original_image_metadata = utils.csvread(os.path.join(base_dir, 'annotations', image_sourcefile))
     original_image_annotations = utils.csvread(os.path.join(base_dir, 'annotations', image_label_sourcefile))
-    original_image_sizes = utils.csvread(os.path.join('data/', image_size_sourcefile))
+    if image_size_sourcefile is not None:
+        original_image_sizes = utils.csvread(os.path.join('data/', image_size_sourcefile))
+    else:
+        original_image_sizes = None
     if args.task == 'bbox':
         original_annotations = utils.csvread(os.path.join(base_dir, 'annotations', annotation_sourcefile))
     elif args.task == 'panoptic':
